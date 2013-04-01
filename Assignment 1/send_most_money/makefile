@@ -3,5 +3,5 @@ clean:
 	rm -rf out
 
 send-most-money:
-	mkdir out
-	clang++ -framework gecode -o out/send-most-money send-more-money-with-gist-inspection.cpp
+	mkdir -p out
+	clang++ -framework gecode -o out/send-most-money send-most-money.cpp

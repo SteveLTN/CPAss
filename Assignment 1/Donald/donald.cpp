@@ -1,5 +1,5 @@
 #include "gecode/int.hh"
-#include "gecode/search.hh"
+#include "gecode/gist.hh"
 
 using namespace Gecode;
 class Donald : public Space{
@@ -42,22 +42,18 @@ public:
     return new Donald(share,*this);
   }
   // print solution
-  void print(void) const {
+  void print(std::ostream& os) const {
     std::cout << li << std::endl;
   }
 };
 
 // main function
 int main(int argc, char* argv[]) {
-  
-  // create model and search engine
   Donald* m = new Donald;
-  DFS<Donald> e(m);
+  Gist::Print<Donald> p("Print solution");
+  Gist::Options o;
+  o.inspect.click(&p);
+  Gist::dfs(m,o);
   delete m;
-  
-  // search and print all solutions
-  while (Donald* s = e.next()) {
-    s->print(); delete s;
-  }
   return 0;
 }
