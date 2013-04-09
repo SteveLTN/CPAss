@@ -1,3 +1,6 @@
+UNAME := $(shell uname)
+ifeq ($(UNAME), Darwin)
+
 all: donald
 clean: 
 	rm -rf out
@@ -5,3 +8,7 @@ clean:
 donald:
 	mkdir -p out
 	clang++ -framework gecode -o out/donald donald.cpp
+	
+else
+	# write your linux makefile here
+endif

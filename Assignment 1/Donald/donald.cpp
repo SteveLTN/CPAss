@@ -43,7 +43,7 @@ public:
   }
   // print solution
   void print(std::ostream& os) const {
-    std::cout << li << std::endl;
+    os << li << std::endl;
   }
 };
 
