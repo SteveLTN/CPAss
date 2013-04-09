@@ -1,17 +1,17 @@
 UNAME := $(shell uname)
 ifeq ($(UNAME), Darwin)
 
-all: sudoku
+all: n-queens
 clean: 
 	rm -rf out
 
-sudoku:
-	mkdir -p out
-	clang++ -framework gecode -o out/sudoku sudoku.cpp
-	
+n-queens:
+	mkdir out
+	clang++ -framework gecode -o out/n-queens n-queens.cpp
+
 run:
-	out/sudoku
-	
+	out/n-queens	
+
 else
 	# write your linux makefile here
 endif
