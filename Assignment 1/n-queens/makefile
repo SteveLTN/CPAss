@@ -6,11 +6,11 @@ clean:
 	rm -rf out
 
 n-queens:
-	mkdir out
+	mkdir -p out
 	clang++ -framework gecode -o out/n-queens queens.cpp
 
 run:
-	out/n-queens	
+	out/n-queens
 
 else
 	# write your linux makefile here
