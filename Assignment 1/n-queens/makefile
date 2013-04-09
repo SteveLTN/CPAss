@@ -7,7 +7,7 @@ clean:
 
 n-queens:
 	mkdir out
-	clang++ -framework gecode -o out/n-queens n-queens.cpp
+	clang++ -framework gecode -o out/n-queens queens.cpp
 
 run:
 	out/n-queens	
