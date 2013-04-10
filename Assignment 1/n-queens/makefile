@@ -9,7 +9,7 @@ n-queens:
 	mkdir -p out
 	clang++ -framework gecode -o out/n-queens queens.cpp
 
-run:
+run: all
 	out/n-queens
 
 else

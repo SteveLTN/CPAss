@@ -60,6 +60,12 @@ public:
     PROP_MIXED,   ///< Use single distinct and binary disequality constraints
     PROP_DISTINCT ///< Use three distinct constraints
   };
+  enum {
+    BRANCH_MIN,
+    BRANCH_MID,
+    BRANCH_MAX_MAX,
+    BRANCH_KNIGHT_MOVE
+  };
   /// The actual problem
   Queens(const SizeOptions& opt)
     : q(*this,opt.size(),0,opt.size()-1) {
@@ -87,7 +93,20 @@ public:
       distinct(*this, q, opt.icl());
       break;
     }
-    branch(*this, q, INT_VAR_SIZE_MIN(), INT_VAL_MIN());
+    switch(opt.branching()) {
+    case BRANCH_MIN:
+        branch(*this, q, INT_VAR_SIZE_MIN(), INT_VAL_MIN());
+        break;
+    case BRANCH_MID:
+      branch(*this, q, INT_VAR_SIZE_MIN(), INT_VAL_MED());
+      break;
+    case BRANCH_MAX_MAX:
+      branch(*this, q, INT_VAR_SIZE_MAX(), INT_VAL_MIN());
+      break;
+    case BRANCH_KNIGHT_MOVE:
+      branch(*this, q, INT_VAR_MIN_MIN(), INT_VAL_MED());
+      break;
+    }
   }
 
   /// Constructor for cloning \a s
@@ -121,7 +140,7 @@ public:
 int main(int argc, char* argv[]) {
   SizeOptions opt("Queens");
   opt.iterations(500);
-  opt.size(100);
+  opt.size(10);
   opt.propagation(Queens::PROP_DISTINCT);
   opt.propagation(Queens::PROP_BINARY, "binary",
                       "only binary disequality constraints");
@@ -130,6 +149,11 @@ int main(int argc, char* argv[]) {
   opt.propagation(Queens::PROP_DISTINCT, "distinct",
                       "three distinct constraints");
 
+  opt.branching(Queens::BRANCH_MID, "middle",
+    "branch from the middle value");
+  opt.branching(Queens::BRANCH_MIN, "min", "branch from the minimum value");
+  opt.branching(Queens::BRANCH_MAX_MAX, "reverse", "branch from the minimum value");
+  opt.branching(Queens::BRANCH_KNIGHT_MOVE, "knightmove", "branch by knightmove");
   opt.parse(argc,argv);
   Script::run<Queens,DFS,SizeOptions>(opt);
   return 0;
