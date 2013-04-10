@@ -1,5 +1,5 @@
-#include "gecode/int.hh"
-#include "gecode/driver.hh"
+#include <gecode/int.hh>
+#include <gecode/driver.hh>
 
 using namespace Gecode;
 
