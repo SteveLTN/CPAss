@@ -30,7 +30,7 @@ public:
       for(j=0; j<9; j++) {
         columns[i][j] = units[i*9 + j];
       }
-      distinct(*this, columns[i], ICL_DOM);
+      distinct(*this, columns[i], ICL_VAL);
     }
 
     // distinct in rows

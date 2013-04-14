@@ -98,7 +98,7 @@ public:
         branch(*this, q, INT_VAR_SIZE_MIN(), INT_VAL_MIN());
         break;
     case BRANCH_MID:
-      branch(*this, q, INT_VAR_SIZE_MIN(), INT_VAL_MED());
+      branch(*this, q, INT_VAR_SIZE_MIN(), INT_VAL_MIN());
       break;
     case BRANCH_MAX_MAX:
       branch(*this, q, INT_VAR_SIZE_MAX(), INT_VAL_MIN());
