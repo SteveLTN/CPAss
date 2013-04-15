@@ -15,10 +15,10 @@ public:
     coefficient[1] = 4;
     coefficient[2] = -1;
     
-    // IntVarArgs array(3);
- //    array[0] = x;
- //    array[1] = y;
- //    array[2] = z;
+    IntVarArgs array(3);
+    array[0] = x;
+    array[1] = y;
+    array[2] = z;
   
     rel(*this, 3*x + 4*y == z);
     // linear(*this, coefficient, array, IRT_LE, 0);
