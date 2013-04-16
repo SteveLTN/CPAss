@@ -14,4 +14,16 @@ run: all
 
 else
 	# write your linux makefile here
+all: n-queens                                                            
+clean: 
+	rm -rf out
+	rm -f lib
+	 @echo ~~~Clean done~~~
+n-queens:
+	ln -s /usr/local/lib lib
+	mkdir out
+	g++ queens.cpp -o out/n-queens -L n-queens.o -lgecodesearch -lgecodeint -lgecodekernel -lgecodesupport -lgecodegist -lgecodedriver -lgecodeminimodel
+	@echo ~~~g++ ready~~~
+run:
+	out/n-queens
 endif

@@ -14,4 +14,16 @@ run:
 	
 else
 	# write your linux makefile here
+all: send-most-money                                                            
+clean: 
+	rm -rf out
+	rm -f lib
+	 @echo ~~~Clean done~~~
+send-most-money:
+	ln -s /usr/local/lib lib
+	mkdir out
+	g++ send-most-money.cpp -o out/sendMostMoney -L sendMostMoney.o -lgecodesearch -lgecodeint -lgecodekernel -lgecodesupport -lgecodegist
+	@echo ~~~g++ ready~~~
+run:
+	out/sendMostMoney
 endif

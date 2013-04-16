@@ -18,4 +18,16 @@ gist:
 	
 else
 	# write your linux makefile here
+all: sudoku                                                            
+clean: 
+	rm -rf out
+	rm -f lib
+	 @echo ~~~Clean done~~~
+sudoku:
+	ln -s /usr/local/lib lib
+	mkdir out
+	g++ sudoku.cpp -o out/sudoku -L sudoku.o -lgecodesearch -lgecodeint -lgecodekernel -lgecodesupport -lgecodegist -lgecodedriver -lgecodeminimodel
+	@echo ~~~g++ ready~~~
+run:
+	out/sudoku
 endif
